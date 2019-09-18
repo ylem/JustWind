@@ -1,0 +1,187 @@
+{
+    "message": "accurate",
+    "cod": "200",
+    "count": 5,
+    "list": [
+        {
+            "id": 5089178,
+            "name": "Manchester",
+            "coord": {
+                "lat": 42.9956,
+                "lon": -71.4548
+            },
+            "main": {
+                "temp": 284.08,
+                "pressure": 1023,
+                "humidity": 58,
+                "temp_min": 281.48,
+                "temp_max": 286.15
+            },
+            "dt": 1568794171,
+            "wind": {
+                "speed": 4.1,
+                "deg": 10
+            },
+            "sys": {
+                "country": "US"
+            },
+            "rain": null,
+            "snow": null,
+            "clouds": {
+                "all": 75
+            },
+            "weather": [
+                {
+                    "id": 803,
+                    "main": "Clouds",
+                    "description": "broken clouds",
+                    "icon": "04n"
+                }
+            ]
+        },
+        {
+            "id": 2643123,
+            "name": "Manchester",
+            "coord": {
+                "lat": 53.4791,
+                "lon": -2.2442
+            },
+            "main": {
+                "temp": 282.97,
+                "pressure": 1030,
+                "humidity": 87,
+                "temp_min": 280.93,
+                "temp_max": 285.37
+            },
+            "dt": 1568794161,
+            "wind": {
+                "speed": 0.5,
+                "deg": 110
+            },
+            "sys": {
+                "country": "GB"
+            },
+            "rain": null,
+            "snow": null,
+            "clouds": {
+                "all": 0
+            },
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "clear sky",
+                    "icon": "01d"
+                }
+            ]
+        },
+        {
+            "id": 4503355,
+            "name": "Manchester",
+            "coord": {
+                "lat": 39.9735,
+                "lon": -74.3817
+            },
+            "main": {
+                "temp": 285.56,
+                "pressure": 1021,
+                "humidity": 100,
+                "temp_min": 282.15,
+                "temp_max": 290.93
+            },
+            "dt": 1568794294,
+            "wind": {
+                "speed": 1.53,
+                "deg": 19.085
+            },
+            "sys": {
+                "country": "US"
+            },
+            "rain": null,
+            "snow": null,
+            "clouds": {
+                "all": 1
+            },
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "clear sky",
+                    "icon": "01n"
+                }
+            ]
+        },
+        {
+            "id": 5199634,
+            "name": "Manchester",
+            "coord": {
+                "lat": 40.0548,
+                "lon": -76.7221
+            },
+            "main": {
+                "temp": 285.01,
+                "pressure": 1021,
+                "humidity": 82,
+                "temp_min": 282.15,
+                "temp_max": 287.59
+            },
+            "dt": 1568794187,
+            "wind": {
+                "speed": 1.57,
+                "deg": 359.671
+            },
+            "sys": {
+                "country": "US"
+            },
+            "rain": null,
+            "snow": null,
+            "clouds": {
+                "all": 1
+            },
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "clear sky",
+                    "icon": "01n"
+                }
+            ]
+        },
+        {
+            "id": 4865996,
+            "name": "Manchester",
+            "coord": {
+                "lat": 42.4842,
+                "lon": -91.4555
+            },
+            "main": {
+                "temp": 292.93,
+                "pressure": 1018,
+                "humidity": 100,
+                "temp_min": 292.04,
+                "temp_max": 294.15
+            },
+            "dt": 1568794185,
+            "wind": {
+                "speed": 3.6,
+                "deg": 130
+            },
+            "sys": {
+                "country": "US"
+            },
+            "rain": null,
+            "snow": null,
+            "clouds": {
+                "all": 1
+            },
+            "weather": [
+                {
+                    "id": 701,
+                    "main": "Mist",
+                    "description": "mist",
+                    "icon": "50n"
+                }
+            ]
+        }
+    ]
+}
