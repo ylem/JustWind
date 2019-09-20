@@ -3,15 +3,16 @@ import UIKit
 class SearchCityCoordinator: Coordinator {
     
     var presenter: UINavigationController
+    private let coordinatorBuilder: CoordinatorBuilder
     private let viewControllerBuilder: ViewControllerBuilder
-    private let completion: () -> Void
+    private var baseNavigationConroller: UINavigationController?
     
     init(presenter: UINavigationController,
-         viewControllerBuilder: ViewControllerBuilder,
-         completion: @escaping () -> Void) {
+         coordinatorBuilder: CoordinatorBuilder,
+         viewControllerBuilder: ViewControllerBuilder) {
         self.presenter = presenter
+        self.coordinatorBuilder = coordinatorBuilder
         self.viewControllerBuilder = viewControllerBuilder
-        self.completion = completion
     }
     
     func start() {
@@ -20,7 +21,16 @@ class SearchCityCoordinator: Coordinator {
     
     private func showSearchCityViewController() {
         let vc = viewControllerBuilder.searchCity(delegate: self)
-        presenter.present(vc, animated: true, completion: nil)
+        let nav = UINavigationController(rootViewController: vc)
+        presenter.present(nav, animated: true, completion: nil)
+        baseNavigationConroller = nav
+    }
+    
+    private func showCityDetail(_ city: City) {
+        guard let nav = baseNavigationConroller else { return }
+        let coordinator = coordinatorBuilder.detail(presenter: nav,
+                                                    selectedCity: city)
+        coordinator.start()
     }
     
     deinit {
@@ -31,6 +41,6 @@ class SearchCityCoordinator: Coordinator {
 extension SearchCityCoordinator: SearchCityViewControllerDelegate {
     
     func didSelectCity(_ city: City) {
-        print(city.name)
+        showCityDetail(city)
     }
 }

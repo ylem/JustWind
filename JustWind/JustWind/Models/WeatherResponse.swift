@@ -2,6 +2,7 @@ import Foundation
 
 struct WeatherResponse: Decodable {
     
+    let id: Int?
     let cod: Int?
     let dt: UInt64
     let coord: GeoCoordinator
@@ -12,6 +13,7 @@ struct WeatherResponse: Decodable {
     let name: String
     
     enum CodingKeys: String, CodingKey {
+        case id
         case cod
         case dt
         case coord
@@ -36,6 +38,12 @@ struct WeatherResponse: Decodable {
             self.cod = try values.decode(Int.self, forKey: .cod)
         } else {
             self.cod = nil
+        }
+        
+        if values.contains(.id) {
+            self.id = try values.decode(Int.self, forKey: .id)
+        } else {
+            self.id = nil
         }
     }
 }

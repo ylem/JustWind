@@ -6,12 +6,15 @@ final class FavouriteDataSourceBuilder {
     typealias CardItem = ValueSettableCollectionItem<FavouriteCityCollectionViewCell>
     
     private let frame: CGRect
-    private let data: [DisplayableWeatherCardData]?
-    
+    private let data: () -> [DisplayableWeatherCardData]?
+    private let didSelectCity: (Int) -> Void
+
     init(frame: CGRect,
-         data: [DisplayableWeatherCardData]?) {
+         data: @escaping () -> [DisplayableWeatherCardData]?,
+         didSelectCity: @escaping (Int) -> Void) {
         self.frame = frame
         self.data = data
+        self.didSelectCity = didSelectCity
     }
     
     var build: [CollectionSection] {
@@ -30,7 +33,7 @@ final class FavouriteDataSourceBuilder {
     }
     
     private var emptyDataSection: CollectionSection? {
-        guard data == nil else { return nil }
+        guard data() == nil else { return nil }
         return GenericCollectionSection(items: [
             emptyDataItem,
             SpacerCollectionItem.clear(height: 16),
@@ -51,7 +54,7 @@ final class FavouriteDataSourceBuilder {
     }
     
     private var cardItems: [CollectionItem]? {
-        guard let data = data else { return nil }
+        guard let data = data() else { return nil }
         return data.reduce(into: [], { result, next in
             result?.append(SpacerCollectionItem.clear(height: 16))
             result?.append(cardItem(displayable: next))
@@ -66,7 +69,10 @@ final class FavouriteDataSourceBuilder {
                                                                     windDegree: CGFloat(displayable.windDegree))
         return CardItem(value: properties,
                         width: frame.widthMargin(32),
-                        height: 90)
+                        height: 90,
+                        selected: { [weak self] in
+            self?.didSelectCity(displayable.cityId)
+        })
     }
 }
 

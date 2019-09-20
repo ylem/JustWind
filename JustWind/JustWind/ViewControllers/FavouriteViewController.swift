@@ -3,6 +3,7 @@ import WLNetworkLayer
 
 protocol FavouriteViewControllerDelegate: class {
     func addCity()
+    func showDetail(city: City)
 }
 
 class FavouriteViewController: UIViewController {
@@ -27,7 +28,6 @@ class FavouriteViewController: UIViewController {
     
     private lazy var initialLayout: () -> Void = {
         configurePlusButton()
-        loadWeatherGroup()
         return {}
     }()
     
@@ -36,6 +36,11 @@ class FavouriteViewController: UIViewController {
         title = "Just Wind"
         configureCollectionLayout()
         configureCollectionCells()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadWeatherGroup()
     }
     
     override func viewDidLayoutSubviews() {
@@ -48,7 +53,7 @@ class FavouriteViewController: UIViewController {
         let image = UIImage(imageLiteralResourceName: "plus").withRenderingMode(.alwaysTemplate)
         plusButton.setImage(image, for: .normal)
         plusButton.imageView?.tintColor = .white
-        plusButton.backgroundColor = .blue
+        plusButton.backgroundColor = .orange
         plusButton.layer.cornerRadius = cornerRadius
         plusButton.layer.applyShadow(blur: cornerRadius, bounds: plusButton.bounds)
     }
@@ -84,9 +89,15 @@ class FavouriteViewController: UIViewController {
         })
     }
     
-    private var builder: FavouriteDataSourceBuilder {
+    private lazy var builder: FavouriteDataSourceBuilder = {
         return .init(frame: collectionView.bounds,
-                     data: viewModel.displayableData)
+                     data: viewModel.displayableData,
+                     didSelectCity: selectedCity)
+    }()
+    
+    private func selectedCity(_ id: Int) {
+        guard let city = viewModel.selectedCity(id: id) else { return }
+        delegate?.showDetail(city: city)
     }
     
     private func loadDataSource() {

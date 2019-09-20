@@ -4,7 +4,7 @@ import WLNetworkLayer
 final class WeatherOperation<T>: NetworkOperationProtocol where T: Decodable {
     
     var url: String {
-        return "weather"
+        return urlName
     }
     
     var parameters: [String: Any]? {
@@ -14,11 +14,14 @@ final class WeatherOperation<T>: NetworkOperationProtocol where T: Decodable {
         ]
     }
     
+    private let urlName: String
     private let cityId: String
     private let units: String
     
-    init(cityId: String,
+    init(urlName: String,
+         cityId: String,
          units: String) {
+        self.urlName = urlName
         self.cityId = cityId
         self.units = units
     }

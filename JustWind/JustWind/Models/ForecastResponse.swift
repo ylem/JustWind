@@ -13,4 +13,8 @@ struct ForecastWeatherResponse: Decodable {
     let main: Main
     let weather: [Weather]
     let wind: Wind
+    
+    var date: String {
+        return Date(timeIntervalSince1970: TimeInterval(dt)).toString(formatString: "dd/MM/yyyy HH:mm")
+    }
 }

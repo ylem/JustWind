@@ -25,12 +25,15 @@ class FavouriteCoordinator: Coordinator {
     }
     
     private func showSearchCity() {
-        let coordinator = coordinatorBuilder.search(presenter: presenter,
-                                                    completion: { [weak self] in
-            self?.searchCityCoordinator = nil
-        })
+        let coordinator = coordinatorBuilder.search(presenter: presenter)
         coordinator.start()
         searchCityCoordinator = coordinator
+    }
+    
+    private func showCityDetail(city: City) {
+        let coordinator = coordinatorBuilder.detail(presenter: presenter,
+                                                    selectedCity: city)
+        coordinator.start()
     }
     
     deinit {
@@ -42,5 +45,9 @@ extension FavouriteCoordinator: FavouriteViewControllerDelegate {
     
     func addCity() {
         showSearchCity()
+    }
+    
+    func showDetail(city: City) {
+        showCityDetail(city: city)
     }
 }

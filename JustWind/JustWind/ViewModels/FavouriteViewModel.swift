@@ -4,14 +4,18 @@ import WLNetworkLayer
 final class FavouriteViewModel {
     
     private let service: WeatherServices
+    private let userDefault: UserDefaults
     private(set) var weathers: WeatherGroupResponse?
+    private var cities: [City]?
     
-    init(service: WeatherServices) {
+    init(service: WeatherServices,
+         userDefault: UserDefaults = .standard) {
         self.service = service
+        self.userDefault = userDefault
     }
     
     private var savedCities: [Int]? {
-        return UserDefaults.standard.savedCityIds
+        return userDefault.savedCityIds
     }
     
     var hasSavedCities: Bool {
@@ -27,13 +31,24 @@ final class FavouriteViewModel {
     
     func set(weathers: WeatherGroupResponse?) {
         self.weathers = weathers
+        
+        cities = weathers?.list.compactMap {
+            guard let id = $0.id else { return nil }
+            return City(id: id, coord: $0.coord, sys: $0.sys, name: $0.name)
+        }
     }
     
-    var displayableData: [DisplayableWeatherCardData]? {
+    func selectedCity(id: Int) -> City? {
+        return cities?.first(where: { $0.id == id })
+    }
+    
+    func displayableData() -> [DisplayableWeatherCardData]? {
         guard let weathers = weathers?.list else { return nil }
         
-        return weathers.map {
-            return .init(city: $0.name,
+        return weathers.compactMap {
+            guard let id = $0.id else { return nil }
+            return .init(cityId: id,
+                         city: $0.name,
                          country: $0.sys.country,
                          windSpeed: "\($0.wind.speed)",
                          windDegree: $0.wind.deg ?? 0)
