@@ -36,6 +36,8 @@ class FavouriteViewController: UIViewController {
     private func configureCollectionCells() {
         collectionView.registerNib(SpacerCollectionViewCell.self)
         collectionView.registerNib(ClearTextCollectionViewCell.self)
+        collectionView.registerNib(ImageCollectionCell.self)
+        collectionView.registerNib(FavouriteCityCollectionViewCell.self)
     }
     
     private lazy var initialLayout: () -> Void = { [weak self] in
@@ -56,13 +58,16 @@ class FavouriteViewController: UIViewController {
     
     private func handleWeatherGroupResponse(_ response: ServiceClientResponse<WeatherGroupResponse>) {
         hideLoading()
-        handle(response, success:  { [weak self] object in
+        handle(response,
+               success:  { [weak self] object in
+            self?.viewModel.set(weathers: object)
             self?.loadDataSource()
         })
     }
     
     private var builder: FavouriteDataSourceBuilder {
-        return .init(frame: collectionView.bounds)
+        return .init(frame: collectionView.bounds,
+                     data: viewModel.displayableData)
     }
     
     private func loadDataSource() {
