@@ -19,7 +19,7 @@ final class FavouriteViewModel {
     }
     
     var hasSavedCities: Bool {
-        return savedCities != nil
+        return savedCities != nil && !(savedCities?.isEmpty ?? true)
     }
     
     func loadWeathers(units: String = "metric",
