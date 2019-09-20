@@ -14,6 +14,12 @@ class FavouriteViewModelTests: XCTestCase {
         subject = FavouriteViewModel(service: mockService, userDefault: mockUserDefault)
     }
     
+    override func tearDown() {
+        subject = nil
+        mockService = nil
+        super.tearDown()
+    }
+    
     func test_loadWeather_withSuccess_returnSuccessResponse() {
         mockUserDefault.save(cityId: 123)
         let response: WeatherGroupResponse = .arrange
@@ -48,10 +54,13 @@ class FavouriteViewModelTests: XCTestCase {
         XCTAssertNotNil(subject.displayableData)
     }
 
-    override func tearDown() {
-        subject = nil
-        mockService = nil
-        super.tearDown()
+    func test_hasSavedCities_withoutSavedCities_returnFalse() {
+        mockUserDefault.anyDefaults = ["justwind_saved_city_ids": []]
+        XCTAssertFalse(subject.hasSavedCities)
     }
     
+    func test_hasSavedCities_withSavedCities_returnTrue() {
+        mockUserDefault.anyDefaults = ["justwind_saved_city_ids": [123]]
+        XCTAssertTrue(subject.hasSavedCities)
+    }
 }
