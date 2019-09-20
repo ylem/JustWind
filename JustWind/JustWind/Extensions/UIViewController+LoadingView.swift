@@ -35,17 +35,7 @@ class Spinner: UIView {
 extension UIViewController {
     
     private var displayView: UIView {
-        let rootViewController = UIApplication.shared.delegate?.window??.rootViewController
-        if let nav = rootViewController as? UINavigationController {
-            if let vc = nav.presentedViewController {
-                return vc.view
-            } else if let vc = nav.visibleViewController {
-                return vc.view
-            } else if let vc = nav.viewControllers.last {
-                return vc.view
-            }
-        }
-        return rootViewController?.view ?? self.view
+        return UIApplication.shared.delegate?.window??.rootViewController?.view ?? self.view
     }
     
     func showLoading(dismissIn: TimeInterval = -1) {

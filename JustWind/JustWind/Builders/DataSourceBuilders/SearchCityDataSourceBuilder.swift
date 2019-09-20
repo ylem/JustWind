@@ -29,18 +29,17 @@ final class SearchCityDataSourceBuilder {
     
     private var topSection: CollectionSection {
         return GenericCollectionSection(items: [
-            SpacerCollectionItem.divider,
-            seachItem,
+            seachItem
         ])
     }
     
     private var seachItem: CollectionItem {
         let properties = SearchTextFieldCollectionViewCell.Properties(text: nil,
-                                                     placeholder: "Search city",
+                                                     placeholder: "City name",
                                                      didEndEditing: didEndEditing)
         return ValueSettableCollectionItem<SearchTextFieldCollectionViewCell>(value: properties,
                                                                               width: frame.widthMargin(20),
-                                                                              height: 90)
+                                                                              height: 70)
     }
     
     private var searchResultSection: CollectionSection? {

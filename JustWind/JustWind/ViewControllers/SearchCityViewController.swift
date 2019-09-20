@@ -8,7 +8,6 @@ protocol SearchCityViewControllerDelegate: class {
 
 class SearchCityViewController: UIViewController {
     
-    @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
     
     private let viewModel: SearchCityViewModel
@@ -28,7 +27,7 @@ class SearchCityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleLabel.text = "Search"
+        configureNavigationBar()
         configureCollectionLayout()
         configureCollectionCells()
     }
@@ -43,6 +42,19 @@ class SearchCityViewController: UIViewController {
         initialLayout()
     }
     
+    private func configureNavigationBar() {
+        title = "Search"
+        navigationItem.leftBarButtonItem = closeButton
+        navigationItem.leftBarButtonItem?.tintColor = .g1
+    }
+    
+    private var closeButton: UIBarButtonItem {
+        return .init(image: UIImage(imageLiteralResourceName: "cross"),
+                     style: .plain,
+                     target: self,
+                     action: #selector(close))
+    }
+    
     private func configureCollectionLayout() {
         collectionView.collectionViewLayout = StickyHeaderCollectionViewLayout()
     }
@@ -55,7 +67,7 @@ class SearchCityViewController: UIViewController {
         collectionView.registerNib(ImageCollectionCell.self)
     }
     
-    @IBAction private func dismiss(_ sender: Any) {
+    @objc private func close() {
         dismiss(animated: true, completion: nil)
     }
     
@@ -73,12 +85,14 @@ class SearchCityViewController: UIViewController {
     
     private func didEndEditing(text: String?) {
         guard let text = text else { return }
+        showLoading()
         viewModel.search(city: text) { [weak self] response in
             self?.handleSearchResponse(response)
         }
     }
     
     private func handleSearchResponse(_ response: ServiceClientResponse<SearchCityResponse>) {
+        hideLoading()
         handle(response, success: { [weak self] response in
             self?.viewModel.set(searchCityResponse: response)
             self?.loadDataSource()

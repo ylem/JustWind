@@ -1,6 +1,6 @@
 import UIKit
 
-final class ViewControllerBuilder {
+class ViewControllerBuilder {
     
     func favourite(delegate: FavouriteViewControllerDelegate?) -> UIViewController {
         let viewModel = FavouriteViewModel(service: WeatherServices())
@@ -11,5 +11,11 @@ final class ViewControllerBuilder {
         let viewModel = SearchCityViewModel(service: FindCityServices())
         return SearchCityViewController(viewModel: viewModel,
                                         delegate: delegate)
+    }
+    
+    func detail(city: City) -> UIViewController {
+        let viewModel = CityDetailViewModel(service: WeatherServices(),
+                                            city: city)
+        return CityDetailViewController(viewModel: viewModel)
     }
 }

@@ -1,6 +1,6 @@
 import UIKit
 
-final class CoordinatorBuilder {
+class CoordinatorBuilder {
 
     func app(presenter: UINavigationController,
              window: UIWindow?) -> AppCoordinator {
@@ -16,10 +16,17 @@ final class CoordinatorBuilder {
                                     viewControllerBuilder: ViewControllerBuilder())
     }
     
-    func search(presenter: UINavigationController,
-                completion: @escaping () -> Void) -> SearchCityCoordinator {
+    func search(presenter: UINavigationController) -> SearchCityCoordinator {
         return SearchCityCoordinator(presenter: presenter,
-                                     viewControllerBuilder: ViewControllerBuilder(),
-                                     completion: completion)
+                                     coordinatorBuilder: CoordinatorBuilder(),
+                                     viewControllerBuilder: ViewControllerBuilder())
+    }
+    
+    func detail(presenter: UINavigationController,
+                selectedCity: City) -> CityDetailCoordinator {
+        return CityDetailCoordinator(presenter: presenter,
+                                     selectedCity: selectedCity,
+                                     coordinatorBuilder: CoordinatorBuilder(),
+                                     viewControllerBuilder: ViewControllerBuilder())
     }
 }
