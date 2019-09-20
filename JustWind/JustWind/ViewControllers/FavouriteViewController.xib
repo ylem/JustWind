@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavouriteViewController" customModule="JustWind" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="uYe-XC-a17" id="tW3-5J-46p"/>
+                <outlet property="plusButton" destination="hoC-1v-FoM" id="vD5-om-IhF"/>
                 <outlet property="view" destination="iN0-l3-epB" id="5TV-RP-VJ8"/>
             </connections>
         </placeholder>
@@ -30,16 +31,32 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hoC-1v-FoM">
+                    <rect key="frame" x="326" y="758" width="72" height="72"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="72" id="LPA-fp-VB7"/>
+                        <constraint firstAttribute="width" secondItem="hoC-1v-FoM" secondAttribute="height" multiplier="1:1" id="amE-UE-gUx"/>
+                    </constraints>
+                    <state key="normal" image="plus"/>
+                    <connections>
+                        <action selector="plusButtonPressed:" destination="-1" eventType="touchUpInside" id="vm0-5V-CRJ"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="uYe-XC-a17" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="539-k1-toI"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="uYe-XC-a17" secondAttribute="bottom" id="5Dt-ys-4Wt"/>
                 <constraint firstItem="uYe-XC-a17" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Ikp-Ep-D71"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="hoC-1v-FoM" secondAttribute="bottom" constant="32" id="Zfi-Cm-dhS"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hoC-1v-FoM" secondAttribute="trailing" constant="16" id="eFQ-V2-vTT"/>
                 <constraint firstItem="uYe-XC-a17" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="f9Y-JQ-2RD"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="131.8840579710145" y="153.34821428571428"/>
         </view>
     </objects>
+    <resources>
+        <image name="plus" width="32" height="32"/>
+    </resources>
 </document>

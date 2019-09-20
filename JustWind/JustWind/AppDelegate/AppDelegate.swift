@@ -4,6 +4,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    private var appCoordinator: AppCoordinator?
     
     private lazy var navigationController: UINavigationController =  {
         let viewController = UIViewController()
@@ -27,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let coordinator = CoordinatorBuilder().app(presenter: navigationController,
                                                    window: window)
         coordinator.start()
+        appCoordinator = coordinator
     }
     
     private func configureNavigationBarLayout() {
