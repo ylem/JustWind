@@ -9,17 +9,24 @@ final class WeatherServices {
         self.serviceClient = serviceClient
     }
     
-    func weather(cityId: UInt64,
-                 units: String = "metric",
+    func weather(cityId: String,
+                 units: String,
                  completion: @escaping ServiceClientCompletion<WeatherResponse>) {
         let operation = WeatherOperation<WeatherResponse>(cityId: cityId, units: units)
         serviceClient.call(operation: operation, completion: completion)
     }
     
-    func forecast(cityId: UInt64,
-                  units: String = "metric",
+    func forecast(cityId: String,
+                  units: String,
                   completion: @escaping ServiceClientCompletion<ForecastResponse>) {
         let operation = WeatherOperation<ForecastResponse>(cityId: cityId, units: units)
+        serviceClient.call(operation: operation, completion: completion)
+    }
+    
+    func group(cityIds: String,
+               units: String,
+               completion: @escaping ServiceClientCompletion<WeatherGroupResponse>) {
+        let operation = WeatherGroupOperation(cityIds: cityIds, units: units)
         serviceClient.call(operation: operation, completion: completion)
     }
 }

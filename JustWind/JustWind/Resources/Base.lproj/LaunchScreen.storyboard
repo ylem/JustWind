@@ -39,6 +39,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="wind" width="256" height="256"/>
+        <image name="wind" width="512" height="512"/>
     </resources>
 </document>

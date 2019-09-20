@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="FavouriteCityCollectionViewCell" customModule="JustWind" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="294" height="57"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="294" height="57"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQn-P1-cjp">
+                        <rect key="frame" x="0.0" y="0.0" width="147" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v99-fg-XAo">
+                        <rect key="frame" x="0.0" y="38.5" width="35.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzg-RN-Bx2">
+                        <rect key="frame" x="147" y="0.0" width="147" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="DsR-oK-guY">
+                        <rect key="frame" x="264" y="37" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="NFx-pB-MK2"/>
+                            <constraint firstAttribute="height" constant="20" id="WV2-7d-u2L"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="kQn-P1-cjp" firstAttribute="width" secondItem="xzg-RN-Bx2" secondAttribute="width" id="04k-jl-Mvk"/>
+                <constraint firstItem="DsR-oK-guY" firstAttribute="top" secondItem="xzg-RN-Bx2" secondAttribute="bottom" constant="16" id="2Cx-dO-Idy"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="DsR-oK-guY" secondAttribute="trailing" constant="10" id="C9p-PE-7I4"/>
+                <constraint firstItem="kQn-P1-cjp" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="EXs-k9-VEv"/>
+                <constraint firstItem="xzg-RN-Bx2" firstAttribute="leading" secondItem="kQn-P1-cjp" secondAttribute="trailing" id="ITS-sU-Fbh"/>
+                <constraint firstItem="kQn-P1-cjp" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cK8-f4-Isc"/>
+                <constraint firstAttribute="trailing" secondItem="xzg-RN-Bx2" secondAttribute="trailing" id="e07-BK-lg2"/>
+                <constraint firstItem="xzg-RN-Bx2" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="goh-3S-pui"/>
+                <constraint firstItem="v99-fg-XAo" firstAttribute="centerY" secondItem="DsR-oK-guY" secondAttribute="centerY" id="uL4-AC-aPh"/>
+                <constraint firstItem="v99-fg-XAo" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="uys-Vl-qab"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="294" height="57"/>
+            <connections>
+                <outlet property="cityLabel" destination="kQn-P1-cjp" id="Z68-4N-wqy"/>
+                <outlet property="countryLabel" destination="v99-fg-XAo" id="aPR-YJ-9f5"/>
+                <outlet property="degreeArrowImageView" destination="DsR-oK-guY" id="vMC-fx-yEx"/>
+                <outlet property="speedLabel" destination="xzg-RN-Bx2" id="UIm-jM-hhu"/>
+            </connections>
+            <point key="canvasLocation" x="308.69565217391306" y="155.69196428571428"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="arrow" width="89" height="128"/>
+    </resources>
+</document>
