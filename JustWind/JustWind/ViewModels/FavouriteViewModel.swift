@@ -5,7 +5,7 @@ final class FavouriteViewModel {
     
     private let service: WeatherServices
     private let userDefault: UserDefaults
-    private(set) var weathers: WeatherGroupResponse?
+    private var weathers: WeatherGroupResponse?
     private var cities: [City]?
     
     init(service: WeatherServices,
@@ -20,6 +20,11 @@ final class FavouriteViewModel {
     
     var hasSavedCities: Bool {
         return savedCities != nil && !(savedCities?.isEmpty ?? true)
+    }
+    
+    func clear() {
+        weathers = nil
+        cities = nil
     }
     
     func loadWeathers(units: String = "metric",
