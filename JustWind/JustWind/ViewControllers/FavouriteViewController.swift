@@ -70,6 +70,8 @@ class FavouriteViewController: UIViewController {
     }
     
     private func loadWeatherGroup() {
+        viewModel.clear()
+        
         guard viewModel.hasSavedCities else {
             return loadDataSource()
         }
