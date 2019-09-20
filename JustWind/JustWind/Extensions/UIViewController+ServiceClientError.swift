@@ -10,6 +10,7 @@ extension UIViewController {
         case .success(let response):
             success?(response.object)
         case .failure(let error):
+            hideLoading()
             show(error, action: failure)
         }
     }

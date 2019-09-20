@@ -7,8 +7,7 @@ class GatewayResponse {
     
     init(json: Any?, error: Error?) {
         self.error = error
-        guard let json = json else { self.data = nil; return }
-        self.data = try? JSONSerialization.data(withJSONObject: json,
-                                                options: .prettyPrinted)
+        guard let json = json as? Data else { self.data = nil; return }
+        self.data = json
     }
 }
