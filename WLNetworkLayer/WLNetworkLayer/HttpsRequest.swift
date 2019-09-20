@@ -21,17 +21,19 @@ public class HttpsRequest {
         dataTask = session.dataTask(with: url) { [weak self] data, response, error in
             defer { self?.dataTask = nil }
             
+            debugPrint(url.absoluteString)
+            
             guard
                 let data = data,
                 let response = response as? HTTPURLResponse,
                 response.statusCode == 200
-                else {
-                    DispatchQueue.main.async {
-                        completion(nil, error)
-                    }
-                    return
+            else {
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
+                return
             }
-            
+
             DispatchQueue.main.async {
                 completion(data, nil)
             }

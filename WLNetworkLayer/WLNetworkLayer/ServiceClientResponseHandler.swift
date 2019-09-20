@@ -33,14 +33,13 @@ public struct ServiceClientResponseHandler {
                                                               data: Data) -> ServiceClientResponse<O.ReturnType> {
         let response: ServiceClientResponse<O.ReturnType>
         do {
-            let operationResponse = try decoder.decode(OperationResponse.self, from: data)
-            if operationResponse.failure {
-                response = .failure(.operation(operationResponse))
-            } else {
-                let object: O.ReturnType = try operation.parse(data)
-                let success = SuccessfulOperationResponse(object: object, response: operationResponse)
-                response = .success(success)
-            }
+            let object: O.ReturnType = try operation.parse(data)
+            
+            // have to manually setup a success response status.
+            // I am looking for the API can give me a status key/value in all responses
+            let success = SuccessfulOperationResponse(object: object,
+                                                      response: OperationResponse(status: "200"))
+            response = .success(success)
         } catch {
             response = .failure(.parse(error))
         }
