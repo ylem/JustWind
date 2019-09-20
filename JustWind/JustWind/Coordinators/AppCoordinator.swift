@@ -5,13 +5,17 @@ class AppCoordinator: Coordinator {
     var presenter: UINavigationController
     
     private let window: UIWindow?
+    private let coordinatorBuilder: CoordinatorBuilder
     private let viewControllerBuilder: ViewControllerBuilder
+    private var favouriteCoordinator: FavouriteCoordinator?
     
     init(presenter: UINavigationController,
          window: UIWindow?,
+         coordinatorBuilder: CoordinatorBuilder,
          viewControllerBuilder: ViewControllerBuilder) {
         self.presenter = presenter
         self.window = window
+        self.coordinatorBuilder = coordinatorBuilder
         self.viewControllerBuilder = viewControllerBuilder
     }
     
@@ -20,7 +24,8 @@ class AppCoordinator: Coordinator {
     }
     
     private func showFavouriteViewController() {
-        let vc = viewControllerBuilder.favourite()
-        presenter.setViewControllers([vc], animated: false)
+        let coor = coordinatorBuilder.favourite(presenter: presenter)
+        coor.start()
+        favouriteCoordinator = coor
     }
 }

@@ -11,4 +11,10 @@ extension SpacerCollectionItem {
         return SpacerCollectionItem<SpacerCollectionViewCell>(height: 1,
                                                               colour: .g3)
     }
+    
+    static func divider(width: CGFloat) -> SpacerCollectionItem<SpacerCollectionViewCell> {
+        return SpacerCollectionItem<SpacerCollectionViewCell>(height: 1,
+                                                              width: width,
+                                                              colour: .g3)
+    }
 }

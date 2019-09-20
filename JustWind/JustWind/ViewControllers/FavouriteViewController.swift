@@ -1,21 +1,35 @@
 import UIKit
 import WLNetworkLayer
 
+protocol FavouriteViewControllerDelegate: class {
+    func addCity()
+}
+
 class FavouriteViewController: UIViewController {
     
     @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var plusButton: UIButton!
     
     private let viewModel: FavouriteViewModel
     private var dataSource: CollectionViewDataSource?
+    private weak var delegate: FavouriteViewControllerDelegate?
     
-    init(viewModel: FavouriteViewModel) {
+    init(viewModel: FavouriteViewModel,
+         delegate: FavouriteViewControllerDelegate?) {
         self.viewModel = viewModel
+        self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
+    
+    private lazy var initialLayout: () -> Void = {
+        configurePlusButton()
+        loadWeatherGroup()
+        return {}
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +43,16 @@ class FavouriteViewController: UIViewController {
         initialLayout()
     }
     
+    private func configurePlusButton() {
+        let cornerRadius: CGFloat = plusButton.bounds.width / 2
+        let image = UIImage(imageLiteralResourceName: "plus").withRenderingMode(.alwaysTemplate)
+        plusButton.setImage(image, for: .normal)
+        plusButton.imageView?.tintColor = .white
+        plusButton.backgroundColor = .blue
+        plusButton.layer.cornerRadius = cornerRadius
+        plusButton.layer.applyShadow(blur: cornerRadius, bounds: plusButton.bounds)
+    }
+    
     private func configureCollectionLayout() {
         collectionView.collectionViewLayout = StickyHeaderCollectionViewLayout()
     }
@@ -39,11 +63,6 @@ class FavouriteViewController: UIViewController {
         collectionView.registerNib(ImageCollectionCell.self)
         collectionView.registerNib(FavouriteCityCollectionViewCell.self)
     }
-    
-    private lazy var initialLayout: () -> Void = { [weak self] in
-        self?.loadWeatherGroup()
-        return {}
-    }()
     
     private func loadWeatherGroup() {
         guard viewModel.hasSavedCities else {
@@ -73,5 +92,9 @@ class FavouriteViewController: UIViewController {
     private func loadDataSource() {
         dataSource = CollectionViewDataSourceFlowLayout(collectionView: collectionView,
                                                         sections: builder.build)
+    }
+    
+    @IBAction private func plusButtonPressed(_ sender: Any) {
+        delegate?.addCity()
     }
 }
