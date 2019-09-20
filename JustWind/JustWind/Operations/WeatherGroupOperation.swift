@@ -1,30 +1,30 @@
 import Foundation
 import WLNetworkLayer
 
-final class WeatherOperation<T>: NetworkOperationProtocol where T: Decodable {
+final class WeatherGroupOperation: NetworkOperationProtocol {
     
     var url: String {
-        return "weather"
+        return "group"
     }
     
     var parameters: [String: Any]? {
         return [
-            "id": cityId,
+            "id": cityIds,
             "units": units
         ]
     }
     
-    private let cityId: String
+    private let cityIds: String
     private let units: String
     
-    init(cityId: String,
+    init(cityIds: String,
          units: String) {
-        self.cityId = cityId
+        self.cityIds = cityIds
         self.units = units
     }
     
-    func parse(_ data: Data) throws -> T {
-        return try JSONDecoder().decode(T.self,
+    func parse(_ data: Data) throws -> WeatherGroupResponse {
+        return try JSONDecoder().decode(WeatherGroupResponse.self,
                                         from: data)
     }
 }

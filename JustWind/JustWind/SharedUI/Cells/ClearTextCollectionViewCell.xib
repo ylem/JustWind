@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<device id="retina4_7" orientation="portrait">
+<adaptation id="fullscreen"/>
+</device>
+<dependencies>
+<deployment identifier="iOS"/>
+<plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+<capability name="Safe area layout guides" minToolsVersion="9.0"/>
+<capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+</dependencies>
+<customFonts key="customFonts">
+<array key="ExpertSans(B14)-Rg.ttf">
+<string>ExpertSansFourteen-Rg</string>
+</array>
+</customFonts>
+<objects>
+<placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+<placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+<collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="GJx-Ff-7G8" customClass="ClearTextCollectionViewCell" customModule="Pingit" customModuleProvider="target">
+<rect key="frame" x="0.0" y="0.0" width="304" height="108"/>
+<autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+<view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+<rect key="frame" x="0.0" y="0.0" width="304" height="108"/>
+<autoresizingMask key="autoresizingMask"/>
+<subviews>
+<label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@text" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="026-di-MKy">
+<rect key="frame" x="0.0" y="0.0" width="304" height="108"/>
+<color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+<fontDescription key="fontDescription" name="ExpertSansFourteen-Rg" family="Expert Sans (B14)" pointSize="14"/>
+<color key="textColor" red="0.27058823529999998" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+<nil key="highlightedColor"/>
+</label>
+</subviews>
+</view>
+<color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+<constraints>
+<constraint firstItem="026-di-MKy" firstAttribute="leading" secondItem="GJx-Ff-7G8" secondAttribute="leading" id="4FD-6x-LgR"/>
+<constraint firstAttribute="bottom" secondItem="026-di-MKy" secondAttribute="bottom" id="TzC-Iq-nnx"/>
+<constraint firstItem="026-di-MKy" firstAttribute="top" secondItem="GJx-Ff-7G8" secondAttribute="top" id="oiD-hO-HFd"/>
+<constraint firstAttribute="trailing" secondItem="026-di-MKy" secondAttribute="trailing" id="yZK-c5-MQC"/>
+</constraints>
+<viewLayoutGuide key="safeArea" id="GdG-tl-apf"/>
+<size key="customSize" width="304" height="108"/>
+<connections>
+<outlet property="textLabel" destination="026-di-MKy" id="53v-LY-dmf"/>
+</connections>
+<point key="canvasLocation" x="-113" y="5"/>
+</collectionViewCell>
+</objects>
+</document>

@@ -10,7 +10,7 @@ public enum ServiceClientError: Error {
 
 extension ServiceClientError {
     
-    var title: String {
+    public var title: String {
         switch self {
         case .operation(let response):
             return "\(response.status)"
@@ -19,7 +19,7 @@ extension ServiceClientError {
         }
     }
     
-    var message: String {
+    public var message: String {
         switch self {
         case .client(let error), .parse(let error):
             return error.localizedDescription
